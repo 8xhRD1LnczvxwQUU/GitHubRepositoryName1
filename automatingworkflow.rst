@@ -246,6 +246,8 @@ What we need to enable CI/CD for our ReadTheDocs project is to enable the GitHub
 
 .. Note::
 
+	**ReadTheDocs/GitHub webhook / pushing changes**
+
 	#.	log into https://readthedocs.org; go to our doc project (name badge -> dropdown list -> My projects -> OurDocProjectHere); if we are on the correct page, then we will see the following: ::
 		
 			Your documentation is ready to use
