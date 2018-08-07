@@ -130,20 +130,132 @@ Open *vsc*.
 
 Now we can initialise the Git repository for this directory.  We can do this from the command line, but we will use the *vsc* ``Source Control`` tab (``Ctrl + Shift + G``).  We see a note that ``There are no active source control providers``.  
 
+.. Note::
+
+	**Initialise Git repository**
+
+	#. click on the ``Git`` icon to ``Initialize Repository``; an ``Explorer`` window will pop up; 
+	#. click the ``Initialize Repository`` button; 
+	#. type in a ``Commit Message`` for the new repository (e.g. *initial commit*), then ``Commit`` (``Ctrl + Enter``); 
+	#. we may see a note about: ::
+
+		There are no staged changes to commit.
+
+		Would you like to automatically stage all your changes and commit them directly?
+
+	click ``Yes``.
+
+	We've initialised a new repository in Git.  Since this is brand new, all the existing files are "initial changes" needing to be committed to the repository, hence the ``initial commit``.
+
+	Staging changes is beyond the scope of this *Document*, but we might think of it like creating shelf sets in *tfvc*.  
+
+Having completed the initialisation and the first commit, we now have a local Git repository and the current state of all our source code is now at a known point.  All of this is so far still on our local machine.  Now we need to connect to a remote repository and do a push.
+
+The integrated menu options and Git functionality do not currently support the two operations we need to do, so we will open the *vsc* terminal for this (``Ctrl + '`` (apostrophe)).  We start by adding a remote origin link to the URL that GitHub gave us.  
+
+.. Note::
+
+	**Remote GitHub repository and Push**
+
+	#. open a *vsc* terminal (``Ctrl + '`` (apostrophe)); ::
+	   
+		git remote add origin GitHubRepoURLHere
+		git push -u origin master
+
+	#. open your GitHub Repository URL (or *refresh* the page); 
+	#. we see that our code has been uploaded to our GitHub repository.
+
+	We just push-ed with the ``-u`` flag to the ``master`` branch.  Some objects will be reviewed and written onto GitHub.
+
 Set up ReadTheDocs hosting
 ++++++++++++++++++++++++++
 
+.. Note::
 
+	**create a ReadTheDocs account**
+
+	#.	go to https://readthedocs.org/, click ``Sign up`` (or, if you already have a *ReadTheDocs* account, skip the Sign up and log in); 
+	#.	create an account; 
+	#.	sign in.
+
+.. Attention::
+
+	*ReadTheDocs* is free as long as your documentation can be **public**.  We will look at other options if we don't want public documentations later.
+
+.. Note::
+
+	**Set up a connected account**
+
+	#.	once logged in, click the ``Connect your Accounts`` button; 
+	#.	we are connecting to GitHub, so click the ``Connect to GitHub`` button; 
+	#.	(if we are not logged into our GitHub account, then we may be prompted to sign into GitHub;)
+	#.	we are directed to the GitHub connection consent screen.  Click the ``Authorize readthedocs`` button, the page will redirect to https://readthedocs.org; 
+	#.	click on the name badge (top-right) to get to the ReadTheDocs account homepage; 
+	#.	click the ``Import a Project`` button; 
+	#.	we may be prompted to ::
+			
+			Import a Repository
+
+				No remote repositories found, try refreshing your accounts.
+
+		click the ``Refresh`` icon; 
+
+	#.	click the ``Plus`` icon on the row containing the repository we want to Import; 
+	#.	we can change the ``Name``, ``Repository URL``, and the ``Repository type`` of the Project; click ``Next``; 
+	#.	we see the following: ::
+		
+			Webhook successfully added
+
+				Your documentation is building
+				You'll be able to view your documentation in a minute or two, once your project is done building.
+
+		wait a minute or two, *refresh* the page; 
+
+	#.	we see: ::
+		
+			Your documentation is ready to use
+
+				Your documentation has been built. Ensure your documentation is kept up to date with every commit to your repository, by setting up a webhook.
+		we're done for now.
+
+	ReadTheDocs wants to have certain access to our GitHub account to be able to grab content and monitor the repositories via web hooks, etc.
+
+Click the ``View Docs`` button (top-right), we can now see a public URL where our documentation project is published.  It looks something like: ::
+
+	https://GitHubRepoNameHere.readthedocs.io/en/latest/index.html
+
+We have now completed the one-time set up activities.
 
 Continuous integration / continuous delivery
 ++++++++++++++++++++++++++++++++++++++++++++
 
+We consider the following scenario:
 
+	#.	contributors, developers, or authors make some kind of a check-in, commit, or change to a source control repository; 
+	#.	the act of making a change to this source control repository would then automatically initiate a build process; 
+	#.	the build process produces some artifacts or results of the build---in our case, this will be the ``.html`` and supporting files for the doc website; 
+	#.	*if* this process of creating artifacts does not require any human intervention, other than to make the change to the source control, *then* we have continuous integration ("*CI*"); 
+	#.	after a CI has been established, it's possible to recognise a new build artifact and automatically deploy those artifacts to a server that makes them available to end users---*if* this happens automatically without human intervention, *then* we have continuous delivery ("*CD*").
+
+We can execute automated test within these processes, e.g. notifications, require approvals, etc.---The main point is that the heavy lifting of creating the builds and getting them deployed happens without human intervention, which is definition not labour intensive (other than the committing repository change).  We can focus on processes being initiated or approved.  We explore how to do this with out doc project.
 
 Setting up CI/CD on ReadTheDocs
 +++++++++++++++++++++++++++++++
 
+What we need to enable CI/CD for our ReadTheDocs project is to enable the GitHub webhook for our doc project.
 
+.. Note::
+
+	#.	log into https://readthedocs.org; go to our doc project (name badge -> dropdown list -> My projects -> OurDocProjectHere); if we are on the correct page, then we will see the following: ::
+		
+			Your documentation is ready to use
+
+				Your documentation has been built. Ensure your documentation is kept up to date with every commit to your repository, by setting up a webhook.
+	#.	we view the ``Admin`` function by clicking that button; 
+	#.	we see some default options when we set up the doc project here; go to the ``Integrations`` tab (left navigation page);
+	#.	we see that ``GitHub incoming webhook`` is already set up
+	
+	*ReadTheDocs* sets up the ``GitHub incoming webhook`` for us when we connected out GitHub repository to this project.
 
 Pull Requests
 +++++++++++++

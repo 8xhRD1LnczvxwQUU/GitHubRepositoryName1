@@ -10,7 +10,8 @@ Welcome to Doc Project's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+   automatingworkflow
+   notes
 
 Indices and tables
 ==================
