@@ -282,18 +282,3 @@ Approve and Merge the Pull request
 Summary
 +++++++
 
-
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-.. \end{toctree}
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
