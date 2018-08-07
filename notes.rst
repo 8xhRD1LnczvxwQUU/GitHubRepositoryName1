@@ -216,16 +216,3 @@ and if we run ::
 	./_build\html\index.html
 
 then we can see that the *ReadTheDocs.io* theme has been applied.
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-.. \end{toctree}
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
