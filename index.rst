@@ -6,12 +6,15 @@
 Welcome to Doc Project's documentation!
 =======================================
 
+Hello World!
+++++++++++++
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   automatingworkflow
    notes
+   automatingworkflow
 
 Indices and tables
 ==================
