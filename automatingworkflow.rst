@@ -388,11 +388,65 @@ Let's verify.
 	#.	make a change and save it (or, if you already have changes that needs to be committed); 
 	#.	``Commit`` locally; 
 	#.	``Source Control``; ``More``; ``Push``; 
+	
+		we run into an error message: ::
 
+			Can't push refs to remote.  Try running 'Pull' first to integrate your changes.
 
+		This is a bit misleading:  trying a ``Pull`` will not help in this case.
+
+	#.	``Open Git Log``; 
+	  	
+	  	we note the following lines: ::
+
+	  		> git push origin master:master
+			remote: error: GH006: Protected branch update failed for refs/heads/master.        
+			remote: error: At least 1 approving review is required by reviewers with write access.        
+			To https://github.com/GitHubAccountNameHere/GitHubRepoNameHere.git
+			 ! [remote rejected] master -> master (protected branch hook declined)
+			error: failed to push some refs to 'https://github.com/GitHubAccountNameHere/GitHubRepoNameHere.git'
+
+		which means that we're attempting to push a commit into a protected branch, which requires at least one reviewer.  This is exactly what we wanted.
+
+.. Note::  **Undo a commit in vsc**
+
+	#.	``Source Control``; 
+	#.	``More``; 
+	#.	``Undo Last Commit``; 
+	
+	which will make our changes pending again, ready for a commit.
+
+.. Note::  **Discard a change in vsc**
+
+	#.	``Source Control``; 
+	#.	``CHANGES`` node; 
+	#.	(hover over the file we intend to discard the changes on) ``Discard Changes``; 
+	
+	and to discard all changes made:
+
+	-	(hover over the ``CHANGES`` node) ``Discard All Changes``.
 
 Submit a Change via a Pull request
 ++++++++++++++++++++++++++++++++++
+
+We cover the following:
+
+	#.	create a branch or fork; 
+	#.	make changes; 
+	#.	commit changes; 
+	#.	publish to the remote branch; 
+	#.	create PR.
+
+.. Note::  **Create a New Branch in vsc**
+
+	#.	click the ``Branch`` icon on the Source Control status bar (bottom); 
+	#.	``+ Create new branch``; 
+	#.	name the branch (e.g. ``twig``); 
+	#.	``Enter``.
+	
+	The status bar now shows ``twig`` as the current branch.  The Cloud upload icon means that the ``twig`` branch doesn't exist remotely in our GitHub repository yet.
+
+We make a change to any ``.rst`` file (or, if we already have a change ready to commit, then), ``Commit``.  Remember, this is still a local commit in our ``twig`` branch.
 
 
 
