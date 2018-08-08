@@ -216,7 +216,37 @@ Verify version behaviour
 
 We now have two versions of our documentation.  We push distinct changes on the two distinct branches (``master`` vs ``release``) to verify that the versions behave appropriately.
 
+.. Note::
+	Verify CI/CD on version latest on ReadTheDocs
+
+	#.	create a branch; 
+	#.	commit some changes; 
+	#.	PR; 
+	#.	approve PR; 
+	#.	Merge to ``master`` branch
+	
+	This will trigger an CI/CD process which automatically initiate a new build on the ``version latest`` documentation.
+
+.. Note::
+	**Verify CI/CD when merging latest version with release version**
+
+	#.	create a new PR:  
+
+			-	``base: release``; 
+			-	``compare: master``; 
+				
+					this means we're merging changes committed in the compare ``master`` branch into the base ``release`` branch; 
+
+					**NB** our ``release`` branch is not protected
+	#.	``Merge pull request``; 
+	#.	``Confirm merge``
+	
+	This will trigger an CI/CD process which automatically initiate a new build on the ``version release`` documentation.  What we have effectively done is deploying our latest version (which contains additional/amended information) of the documentation into the release version (the last stable release) of the documentation.  The same concept applies to a code project.
+
 Summary
 +++++++
 
-
+We:
+	#.	added custom CSS support; 
+	#.	added markdown support; 
+	#.	added version support.
