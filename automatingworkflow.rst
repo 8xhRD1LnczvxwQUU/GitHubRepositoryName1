@@ -246,18 +246,60 @@ What we need to enable CI/CD for our ReadTheDocs project is to enable the GitHub
 
 .. Note::
 
-	**ReadTheDocs/GitHub webhook / pushing changes**
+	**ReadTheDocs/GitHub webhook and pushing changes**
 
 	#.	log into https://readthedocs.org; go to our doc project (name badge -> dropdown list -> My projects -> OurDocProjectHere); if we are on the correct page, then we will see the following: ::
 		
 			Your documentation is ready to use
 
 				Your documentation has been built. Ensure your documentation is kept up to date with every commit to your repository, by setting up a webhook.
+
 	#.	we view the ``Admin`` function by clicking that button; 
 	#.	we see some default options when we set up the doc project here; go to the ``Integrations`` tab (left navigation page);
-	#.	we see that ``GitHub incoming webhook`` is already set up
+	#.	we see that ``GitHub incoming webhook`` is already set up.  
+		*ReadTheDocs* sets up the ``GitHub incoming webhook`` for us when we connected out GitHub repository to this project.  Let's make a change and see what happens; 
+	#.	make a change to one of our ``.rst`` files in the doc project (that is published on *ReadTheDocs*); save the change; 
+	#.	write a ``Commit Message``, commit the change (``Ctrl + Enter``)
+	#.	we see that there is one uncommitted change under the ``Source Control`` tab (``Ctrl + Shift + G``).
+		In fact, we can even see in the VS Code toolbar (bottom-left) that we:
+
+		-	are in the master branch; 
+		-	have zero remote changes that needs to be applied or pulled; 
+		-	have one local change that needs to be pushed up to the remote repository; 
 	
-	*ReadTheDocs* sets up the ``GitHub incoming webhook`` for us when we connected out GitHub repository to this project.
+	#.	click the ``...`` icon under the ``Source Control`` tab to see ``More`` options; 
+	#.	choose ``Push`` to push the changes from our local version up to the remote repository; 
+	
+We have just pushed our change into GitHub, so let's go back to our ReadTheDocs project page.  Refresh the page: ::
+
+	Your documentation is building
+
+	You'll be able to veiw your documentation in a minute or two, once your project is done building
+
+wait for the build to finish and ::
+
+	Your documentation is ready to use
+
+	Your documentation bas been built.  Ensure your documentation is kept up to date with every commit to your repository, by setting up a webhook.
+
+click the ``Builds`` button on the project page, and we should see all the builds of the documentation.  Click the ``View Docs`` button (top-right) to see our change.
+	
+.. Attention:: **Git push and ReadTheDocs workflow summary**
+
+	#.	we make a change on our local repository; 
+	#.	we save and commited the change; 
+	#.	we push our change into the master branch on GitHub; 
+	#.	*ReadTheDocs* builds and deploys the project; 
+
+We see the ``Edit on GitHub`` link on our current *ReadTheDocs* pages (top-right).  Click on ``Edit on GitHub``, and we are taken to the ``.rst`` file for that page on GitHub.  We can directly edit this file (click the ``Edit`` icon) on GitHub, and even commit the change (write a ``Commit Message``, click the ``Commit changes`` button, bottom).
+
+Go back to the doc project Builds page on ReadTheDocs, and we can see an ``installing`` build that's being deployed on ReadTheDocs.  Once deployed, the build status changes to ``Passed``.  We can ``View Docs`` to verify that the committed changes have been deployed as well.  
+
+.. Danger:: **Edit on GitHub**
+
+	What we've just done above shows that *anyone* with a GitHub account can commit changes to the master branch right now *without* any review (or permission) from us.  
+
+This may not be what we want, so we use pull requests.
 
 Pull Requests
 +++++++++++++
