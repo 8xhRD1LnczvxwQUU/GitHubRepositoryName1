@@ -588,6 +588,6 @@ Summary
 We
 	#.	created a Git repository on GitHub; 
 	#.	hosted docs on ReadTheDocs; 
-	#.	set u pCI/CD; 
+	#.	set up CI/CD; 
 	#.	required PRs; 
 	#.	executed PR workflow; 
