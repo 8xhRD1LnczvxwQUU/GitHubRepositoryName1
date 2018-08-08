@@ -13,6 +13,7 @@ Hello World!
    :maxdepth: 2
    :caption: Contents:
 
-   notes
+   gettingstarted
+   rst
    automatingworkflow
-   beyondreStructuredText
+   beyondrst
