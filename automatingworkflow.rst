@@ -580,6 +580,14 @@ Log in as the owner of the remote repository, go to repository, ``Pull requests`
 			Pull request successfully merged and closed
 			You're all set-the [twig] branch can be safely deleted.
 
+We can verify our changes on *ReadTheDocs* as well.
+
 Summary
 +++++++
 
+We
+	#.	created a Git repository on GitHub; 
+	#.	hosted docs on ReadTheDocs; 
+	#.	set u pCI/CD; 
+	#.	required PRs; 
+	#.	executed PR workflow; 
