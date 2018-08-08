@@ -195,12 +195,26 @@ For our purposes, we will
 Enable versions with a long-lived branch
 ++++++++++++++++++++++++++++++++++++++++
 
+.. Note::
+	**Enable a version on ReadTheDocs**
+
+	#.	create a ``release`` branch, in vsc, GitHub, or otherwise; 
+	#.	go to *ReadTheDocs* project page, click ``Versions`` tab;
+			
+			We see that our ``release`` branch (in fact, *all* previous branches) are under ``Inactive Versions``.  We want to activate the ``release`` branch as a build.
+
+	#.	click ``Edit`` on the ``Inactive Versions`` we should like to activate; 
+	#.	check ``Active``; click ``Save``
+
+We now have two active versions.  We can verify this by going to the ``Overview`` tab and seeing two ``Versions``: ``latest`` and ``release``; and under the ``Builds`` tab we can see a record of the ``version release``  build (distinct from the ``version latest`` build).
+
+On the doc project webpage, we can see the version on the bottom right.  Click the banner to switch versions and more options.
 
 
 Verify version behaviour
 ++++++++++++++++++++++++
 
-
+We now have two versions of our documentation.  We push distinct changes on the two distinct branches (``master`` vs ``release``) to verify that the versions behave appropriately.
 
 Summary
 +++++++
