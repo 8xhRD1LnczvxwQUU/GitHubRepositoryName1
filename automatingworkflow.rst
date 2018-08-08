@@ -190,6 +190,9 @@ Set up ReadTheDocs hosting
 	#.	we are connecting to GitHub, so click the ``Connect to GitHub`` button; 
 	#.	(if we are not logged into our GitHub account, then we may be prompted to sign into GitHub;)
 	#.	we are directed to the GitHub connection consent screen.  Click the ``Authorize readthedocs`` button, the page will redirect to https://readthedocs.org; 
+	
+			ReadTheDocs wants to have certain access to our GitHub account to be able to grab content and monitor the repositories via web hooks, etc.
+
 	#.	click on the name badge (top-right) to get to the ReadTheDocs account homepage; 
 	#.	click the ``Import a Project`` button; 
 	#.	we may be prompted to ::
@@ -218,8 +221,6 @@ Set up ReadTheDocs hosting
 				Your documentation has been built. Ensure your documentation is kept up to date with every commit to your repository, by setting up a webhook.
 		we're done for now.
 
-	ReadTheDocs wants to have certain access to our GitHub account to be able to grab content and monitor the repositories via web hooks, etc.
-
 Click the ``View Docs`` button (top-right), we can now see a public URL where our documentation project is published.  It looks something like: ::
 
 	https://GitHubRepoNameHere.readthedocs.io/en/latest/index.html
@@ -237,7 +238,7 @@ We consider the following scenario:
 	#.	*if* this process of creating artifacts does not require any human intervention, other than to make the change to the source control, *then* we have continuous integration ("*CI*"); 
 	#.	after a CI has been established, it's possible to recognise a new build artifact and automatically deploy those artifacts to a server that makes them available to end users---*if* this happens automatically without human intervention, *then* we have continuous delivery ("*CD*").
 
-We can execute automated test within these processes, e.g. notifications, require approvals, etc.---The main point is that the heavy lifting of creating the builds and getting them deployed happens without human intervention, which is definition not labour intensive (other than the committing repository change).  We can focus on processes being initiated or approved.  We explore how to do this with out doc project.
+We can execute automated test within these processes, e.g. notifications, require approvals, etc.---The main point is that the heavy lifting of creating the builds and getting them deployed happens without human intervention, which is not labour intensive (other than the committing repository change).  We can focus on processes being initiated or approved.  We explore how to do this with out doc project.
 
 Setting up CI/CD on ReadTheDocs
 +++++++++++++++++++++++++++++++
@@ -260,12 +261,14 @@ What we need to enable CI/CD for our ReadTheDocs project is to enable the GitHub
 		*ReadTheDocs* sets up the ``GitHub incoming webhook`` for us when we connected out GitHub repository to this project.  Let's make a change and see what happens; 
 	#.	make a change to one of our ``.rst`` files in the doc project (that is published on *ReadTheDocs*); save the change; 
 	#.	write a ``Commit Message``, commit the change (``Ctrl + Enter``)
-	#.	we see that there is one uncommitted change under the ``Source Control`` tab (``Ctrl + Shift + G``).
-		In fact, we can even see in the VS Code toolbar (bottom-left) that we:
+	
+			we see that there is one uncommitted change under the ``Source Control`` tab (``Ctrl + Shift + G``).
+		
+			In fact, we can even see in the VS Code toolbar (bottom-left) that we:
 
-		-	are in the master branch; 
-		-	have zero remote changes that needs to be applied or pulled; 
-		-	have one local change that needs to be pushed up to the remote repository; 
+				-	are in the master branch; 
+				-	have zero remote changes that needs to be applied or pulled; 
+				-	have one local change that needs to be pushed up to the remote repository; 
 	
 	#.	click the ``...`` icon under the ``Source Control`` tab to see ``More`` options; 
 	#.	choose ``Push`` to push the changes from our local version up to the remote repository; 
@@ -448,12 +451,134 @@ We cover the following:
 
 We make a change to any ``.rst`` file (or, if we already have a change ready to commit, then), ``Commit``.  Remember, this is still a local commit in our ``twig`` branch.
 
+.. Note::  **Publish a Branch onto GitHub in vsc**
+
+	#.	``Source Control``; 
+	#.	``More``; 
+	#.	``Publish Branch``.
+
+We go to GitHub.  Inside our doc project repository, we see the banner ::
+
+	Your recently pushed branches:
+	twig (x minute ago)			Compare & pull request
+
+which is what we wanted.
+
+.. Note:: **Open a pull request on Github**
+
+	#.	go to GitHub doc project repository;
+	#.	click ``Compare & pull request``; 
+	#.	*(change the PR title)*; 
+		
+			*(the title of the PR defaults to the* commit message *we made before pushing the* ``twig`` *branch---we can change this if we want to)*; 
+
+	#.	write a description
+	
+			adding some rationale or justification about why we are submitting the PR will give a reviewer with a better context of what they are reviewing and why we are suggesting the change; 
+
+	#.	``Create pull request``.
+	
+	We see the PR and note the following: ::
+
+		Add more commits by pushing to the twig branch on GitHubAccountNameHere/GitHubRepoNameHere
+
+			Review required
+			At least 1 approving review is required by reviewers with write access.
+
+			Merging is blocked
+			Merging can be performed automatically with 1 approving review.
 
 
 Approve and Merge the Pull request
 ++++++++++++++++++++++++++++++++++
 
+In this section, we will need at least one person with a GitHub account to act as a collaborator/reviewer.  Find a friend (or, if you're ``#foreveralone``, create another GitHub account).
 
+.. Attention:: 
+
+	As the owner of our doc project remote repository, by definition we're also an administrator, and we're not allowed to review our own PRs on GitHub.  This is a good thing.
+
+If we don't have a reviewer, we would need to remove the option about including administrators and override some red warning about merging our own code.
+
+.. Note::  
+	**Adding a collaborator on GitHub**
+
+	#.	log into our GitHub account, go to ``Settings``, ``Collaborators`` node; 
+	#.	(if the collaborator is on GitHub) ``Search by username, full name or email address``
+	#.	``Add collaborator``.
+	
+		The collaborator will receive an email inviting them to collaborate on the repository; accept the invitation.
+
+.. Note::
+	**Reviewing PRs as a collaborator on GitHub**
+
+	#.	log in as a collaborator; 
+	#.	go to the remote repository owner's repository URL; 
+	#.	``Pull requests`` tab; 
+	  	
+	  		we see the following: ::
+
+				Review required
+				At least 1 approving review is required by reviewers with write access.
+
+				Merging is blocked
+				Merging can be performed automatically with 1 approving review.
+
+	#.	``Add your review``; 
+	
+			we are taken to the GitHub text editor in browser, and note the following: 
+
+				-	``Changes from [all commits]`` means that we're currently viewing a consolidated file of aggregated change commits PR'd in this branch; 
+				-	when hovering over each line, we can comment by pressing the ``[+]`` icon; 
+				-	click ``Review changes`` button, and we can:
+					
+					-	``Comment``; 
+					-	``Approve``; 
+					-	``Request changes``.
+			
+			In this example, we simply accept all commit changes, so:
+
+	#.	click ``Review Changes``; check ``Approve``; click ``Submit review``.
+	
+	.. Attention::
+	
+		We see that the previously red notes are now green: ::
+
+			Changes approved
+			1 approving review by reviewers with write access.
+
+			This branch has no conflicts with the base branch
+			Merging can be performed automatically.
+
+		When setting up PR conditions initially, we've only set the no. of approving reviews to 1, hence the trigger.
+
+Log in as the owner of the remote repository, go to repository, ``Pull requests`` tab, click PR name (``twig`` in this case).  We see some tabs under it:
+
+	-	``Conversation``
+	 	
+			gives an overview on the review process; 
+
+	-	``Commits``
+		
+			lists the no. of commits the PR contains; 
+
+	-	``Checks``; 
+	-	``Files changed``
+			
+			gives the aggregate code view before and after the commit(s).
+
+.. Note::
+
+	To merge the PR branch with the base branch, 
+
+		#.	press ``Merge pull request``; 
+		#.	make a comment; 
+		#.	``Confirm merge``.
+		
+		We are prompted with: ::
+
+			Pull request successfully merged and closed
+			You're all set-the [twig] branch can be safely deleted.
 
 Summary
 +++++++
