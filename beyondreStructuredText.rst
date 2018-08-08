@@ -250,3 +250,24 @@ We:
 	#.	added custom CSS support; 
 	#.	added markdown support; 
 	#.	added version support.
+
+.. Attention::
+	**doc project contribution workflow summary**
+
+		#.	create a ``NewBranch``; 
+		#.	make changes; 
+		#.	commit changes; 
+		#.	publish branch; 
+		#.	make PR:
+				#.	``base: master``; 
+				#.	``compare: NewBranch``; 
+		#.	approve PR; 
+		#.	*if* ``NewBranch`` merged to ``master``, *then* CI/CD triggers on *RTD* and a new build triggers on ``version latest``; *else* ``NewBranch`` is an ``Inactive Version`` on *RTD*; 
+	
+	To deploy the ``latest`` changes into a ``release`` version
+	
+		#.	make PR:
+				#.	``base: release``; 
+				#.	``compare: master``; 
+		#.	approve PR; 
+		#.	if merge ``master`` branch with ``release``, then CI/CD triggers on *RTD* and a new build triggers on ``version release``.
