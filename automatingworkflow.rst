@@ -301,18 +301,152 @@ Go back to the doc project Builds page on ReadTheDocs, and we can see an ``insta
 
 This may not be what we want, so we use pull requests.
 
-Pull Requests
+Pull requests
 +++++++++++++
 
+We consider the following scenario:
 
+	#.	we start with an existing repository, a ``master`` branch of the source code, and the owner, review, or creator (call her the **owner**) of the said repository; 
+	#.	we have another person (call her the **contributor**) who has a feature they want to contribute; 
+	#.	they have created their own branch (call it ``snf``) where they have done some work and want to get ``snf`` merged into the main master branch; 
+	#.	they commit the changes made onto ``snf``, push it into the ``snf`` branch and the remote repository; 
+
+To get ``snf`` merged into ``master``, they create what's called a **pull request**.
+
+.. Note:: **Pull request workflow*
+	
+	-	the contributor submits a pull request ("*PR*") to the owner; 
+	-	the PR prompts the owner to review their code; 
+	-	the PR highlights the changes between the ``snf`` and ``master`` branches; 
+	-	if the owner is happy with the code changes, then she can merge the changes into master---this is a **pull operation**, where the code differences are being pulled from ``snf`` into ``master``
+
+PRs can come with *notifications*; PRs processes can also have conditional *policies*, e.g. branch merging needs two persons to approve before committing and merging.
+
+We have demonstrated above that anyone with a GitHub account can commit changes to the ``master`` branch in our repository without our permission.  We change this so that to introduce a change, we need to do it via a pull request.
 
 Configure GitHub to require Pull requests to Master
 +++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Log into our GitHub account; go to our doc project remote repository.  We look at the ``Code`` tab (top-left).
 
+.. Note:: **Set up PRs on GitHub for the protected branch**
+
+	#.	go to the ``Settings`` tab; 
+		
+		.. Attention::
+
+			It's worth our time to explore around the ``Settings`` on offer.  We focus on setting up PRs below.
+
+	#.	click on the ``Branches`` node (left nav. pane); 
+	#.	go to the ``Protected branches`` section; ``Choose a branch...``, select ``master``.  We see some options to protect the branch; 
+	#.	check ``Protect this branch``, which will light up the succeeding options; 
+	#.	for our purpose, we want every change to come from a PR, even from the repository *administrators*, check:
+	
+		#.	``Require pull request reviews before merging``; 
+		#.	``Include administrators``;
+		
+	#.	``Save changes``; 
+
+	We see a note that ::
+
+		Branch protection options saved
+
+Let's verify.
+
+.. Attention:: **Changes to a protected branch on GitHub**
+
+	#.	log into our GitHub account; open the doc project remote repository; ``Code`` tab; 
+	#.	open a ``.rst`` file; 
+	#.	click on ``Edit``; make an edit; 
+	
+	We see on the bottom that ::
+
+		You can't commit to [master] because it is a protected branch.
+		Create a new branch for this commit and start a pull request.
+
+	and that what was the ``Commit changes`` button is now ``Propose file change``.  This means that the only option is to create a new branch and start a pull request.
+
+	We can ``Cancel`` making the change.
+
+.. Attention:: **Changes to a protected branch on vsc**
+
+	#.	open *vsc*; 
+	  	
+	  	the status bar may show that there are changes on the remote repository that does not reflect locally.  *If* so, *then*: 
+
+	  	#.	go to the ``Source Control`` tab (``Ctrl + Shift + G``); 
+	  	#.	``More``; 
+	  	#.	``Pull``; 
+	  	
+	  	.. Attention::
+
+	  		Don't confuse the ``Pull`` operation with a PR:
+
+	  		-	the ``Pull`` operation is the local code editor *pulling* the latest changes from the remote repository (currently on the ``master`` branch); 
+	  		-	a PR is the workflow defined above (reviews and merging).
+	
+	#.	make a change and save it (or, if you already have changes that needs to be committed); 
+	#.	``Commit`` locally; 
+	#.	``Source Control``; ``More``; ``Push``; 
+	
+		we run into an error message: ::
+
+			Can't push refs to remote.  Try running 'Pull' first to integrate your changes.
+
+		This is a bit misleading:  trying a ``Pull`` will not help in this case.
+
+	#.	``Open Git Log``; 
+	  	
+	  	we note the following lines: ::
+
+	  		> git push origin master:master
+			remote: error: GH006: Protected branch update failed for refs/heads/master.        
+			remote: error: At least 1 approving review is required by reviewers with write access.        
+			To https://github.com/GitHubAccountNameHere/GitHubRepoNameHere.git
+			 ! [remote rejected] master -> master (protected branch hook declined)
+			error: failed to push some refs to 'https://github.com/GitHubAccountNameHere/GitHubRepoNameHere.git'
+
+		which means that we're attempting to push a commit into a protected branch, which requires at least one reviewer.  This is exactly what we wanted.
+
+.. Note::  **Undo a commit in vsc**
+
+	#.	``Source Control``; 
+	#.	``More``; 
+	#.	``Undo Last Commit``; 
+	
+	which will make our changes pending again, ready for a commit.
+
+.. Note::  **Discard a change in vsc**
+
+	#.	``Source Control``; 
+	#.	``CHANGES`` node; 
+	#.	(hover over the file we intend to discard the changes on) ``Discard Changes``; 
+	
+	and to discard all changes made:
+
+	-	(hover over the ``CHANGES`` node) ``Discard All Changes``.
 
 Submit a Change via a Pull request
 ++++++++++++++++++++++++++++++++++
+
+We cover the following:
+
+	#.	create a branch or fork; 
+	#.	make changes; 
+	#.	commit changes; 
+	#.	publish to the remote branch; 
+	#.	create PR.
+
+.. Note::  **Create a New Branch in vsc**
+
+	#.	click the ``Branch`` icon on the Source Control status bar (bottom); 
+	#.	``+ Create new branch``; 
+	#.	name the branch (e.g. ``twig``); 
+	#.	``Enter``.
+	
+	The status bar now shows ``twig`` as the current branch.  The Cloud upload icon means that the ``twig`` branch doesn't exist remotely in our GitHub repository yet.
+
+We make a change to any ``.rst`` file (or, if we already have a change ready to commit, then), ``Commit``.  Remember, this is still a local commit in our ``twig`` branch.
 
 
 
