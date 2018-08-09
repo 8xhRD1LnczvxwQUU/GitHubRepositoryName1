@@ -1,5 +1,5 @@
-Some notes
-==========
+Getting Started
+================
 
 Introduction
 ++++++++++++
