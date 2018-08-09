@@ -18,3 +18,4 @@ Hello World!
    rst
    automatingworkflow
    beyondrst
+   versionnumber
