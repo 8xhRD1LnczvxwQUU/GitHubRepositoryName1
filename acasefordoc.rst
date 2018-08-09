@@ -88,6 +88,8 @@ Documentation options
  	
  		*(see next section.)*
 
+.. _whyrtd:
+
 Why *ReadTheDocs*?
 ==================
 
