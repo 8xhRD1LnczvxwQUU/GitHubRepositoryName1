@@ -1,12 +1,12 @@
-Getting Started
+Getting started
 ================
 
 Introduction
 ++++++++++++
 
-A couple of installs and using the ReadTheDocs command line interface to create your documentation project will have you up and editing real documentation in a matter of minutes.  We will set up a few requirements and generating a documentation project that we can edit and run locally.
+A couple of installs and using the *ReadTheDocs* command line interface to create your documentation project will have you up and editing real documentation in a matter of minutes.  We will set up a few requirements and generating a documentation project that we can edit and run locally.
 
-Install ReadTheDocs prerequisites
+Install *ReadTheDocs* prerequisites
 +++++++++++++++++++++++++++++++++
 
 We will:
@@ -19,7 +19,7 @@ We will:
 	- build the project; 
 	- make a "*Hello World!*" type change; 
 
-First, we note the main ReadTheDocs sites (home page here https://readthedocs.org/).  Somewhere on the home page will link to a *getting started* guide (https://docs.readthedocs.io/en/latest/getting_started.html).  Feel free to browse around here for materials not covered in this *Document*.  We will be back here later.
+First, we note the main *ReadTheDocs* sites (home page here https://readthedocs.org/).  Somewhere on the home page will link to a *getting started* guide (https://docs.readthedocs.io/en/latest/getting_started.html).  Feel free to browse around here for materials not covered in this *Document*.  We will be back here later.
 
 *Python*
 --------
@@ -28,7 +28,12 @@ First, we note the main ReadTheDocs sites (home page here https://readthedocs.or
 #. check the option to ``Add Python X.X to PATH``, then ``Install Now``.  This might take a minute; 
 #. ``Close`` the window.  (We have the option to ``Disable path length limit``, but we won't mess around with it now).
 
-Now that *Python* has been installed, we can install the other prerequisites.  Open ``cmd``.  We need to use the *Python* ``pip`` command to run these: ::
+Now that *Python* has been installed, we can install the other prerequisites.  Open ``cmd``.  
+
+*Sphinx*
+------------
+
+We need to use the *Python* ``pip`` command to run these: ::
 
 	pip install sphinx
 	pip install sphinx_rtd_theme

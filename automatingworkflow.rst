@@ -13,7 +13,7 @@
 		Approve and Merge the Pull request
 		Summary
 
-Automating Workflow
+Automating workflow
 ===================
 
 
