@@ -92,15 +92,15 @@ Where present, the ``IterationCode`` is separated from the version number by an 
 
 E.g. 
 
-	#.	``v99.0.1`` can change to ``v010000\_0.0.1``; 
-	#.	``v3.99.4`` can change to ``v000100\_3.0.4``; 
-	#.	``v2.5.99`` can change to ``v000001\_2.5.0``.
+	#.	``v99.0.1`` can change to ``v010000_0.0.1``; 
+	#.	``v3.99.4`` can change to ``v000100_3.0.4``; 
+	#.	``v2.5.99`` can change to ``v000001_2.5.0``.
 
-If the changes exceeds all 99 iterations, then increase the ``IterationCode`` length to 9 digits (and assume a maximum of 999 iteration changes), and so on.
+If the changes exceeds all 99 iterations, then increase the ``IterationCode`` length to 9 digits (and assume a maximum of 999 iteration changes at any version level), and so on.
 
 E.g. 
 
-	#.	``v990000\_99.1.2`` can change to ``v100000000\_0.1.2``.
+	#.	``v990000_99.1.2`` can change to ``v100000000_0.1.2``.
 
 Version level number 
 ----------------------------------------------------------------
@@ -124,8 +124,7 @@ E.g.
 
 The ``procedure`` suffix denotes the procedure the project/document has been sent on.
 
-.. csv-table::
-
+.. csv-table:: Procedure codes
 	:header: "Letter","Process"
 
 	"a","approval needed"
